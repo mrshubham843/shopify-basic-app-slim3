@@ -1,0 +1,7 @@
+commands
+
+composer require slim/slim "^3.0"
+composer require slim/psr7
+composer require vlucas/phpdotenv
+composer auto-dump
+composer require slim/twig-view
