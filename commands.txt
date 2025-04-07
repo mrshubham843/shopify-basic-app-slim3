@@ -5,3 +5,20 @@ composer require slim/psr7
 composer require vlucas/phpdotenv
 composer auto-dump
 composer require slim/twig-view
+
+
+env var
+
+NGROK_URL=
+PROJECT_DIR=/sociaadasdsad
+BASE_URL=${NGROK_URL}${PROJECT_DIR}
+DB_SERVER=localhost
+DB_USERNAME=root
+DB_PASSWORD=
+DB_DATABASE=socialxasdasdasd
+SHOPIFY_API_KEY=b3ff002d92f5adasdssasddasdasd960a03d652b296cc84bd
+SHOPIFY_API_SECRET=fffdad9cadasdasdasdasc70c479f9e216806e275ed15
+APP_API_VERSION=2025-01
+APP_SCOPES=read_products,write_products,read_script_tags,write_script_tags
+APP_URL_ID=socialx2
+SCRIPT_URL=${NGROK_URL}${PROJECT_DIR}web/scripts/eadasdasdasdalana.js
