@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>SocialX</title>
+    <script type="text/javascript"  src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+    <script type="text/javascript"  src="https://cdn.shopify.com/shopifycloud/app-bridge.js?apiKey={{ env.SHOPIFY_API_KEY }}"></script>
+    <script type="text/javascript"  src="https://unpkg.com/@shopify/app-bridge@3.7.10/umd/index.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/@shopify/app-bridge-utils@3.5.1/umd/index.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/spectrum/1.8.1/spectrum.min.css" />
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="shopify-api-key" content="{{ env.SHOPIFY_API_KEY}}" />
+   
+    <script src="{{ env.BASE_URL }}/assets/js/custom.js?timestamp={{ 'now'|date('U') }}" type="text/javascript"></script>
+    <link rel="stylesheet" href="{{ env.BASE_URL }}/assets/css/custom.css?timestamp={{ 'now'|date('U') }}" >
+    <link rel="stylesheet" href="https://unpkg.com/@shopify/polaris@13.9.3/build/esm/styles.css" />
+    <link rel="preconnect" href="https://cdn.shopify.com/" />
+    <link rel="stylesheet" href="https://cdn.shopify.com/static/fonts/inter/v4/styles.css" />
+ 
+</head>
+<body>
+
+    <div class="nav" style="text-align: center;border-bottom: 1px solid #e1e0e0;padding-bottom: 1rem;">
+        <a class="Polaris-Button Polaris-Button--pressable Polaris-Button--variantPrimary Polaris-Button--sizeMedium Polaris-Button--textAlignCenter" data-page="admin/settings?shop={{ shopUrl }}">1. Settings</a>
+        <a class="Polaris-Button Polaris-Button--pressable Polaris-Button--variantPrimary Polaris-Button--sizeMedium Polaris-Button--textAlignCenter" data-page="admin/offers?shop={{ shopUrl }}">2. Offers</a>
+        <a class="Polaris-Button Polaris-Button--pressable Polaris-Button--variantPrimary Polaris-Button--sizeMedium Polaris-Button--textAlignCenter" data-page="admin/customization?shop={{ shopUrl }}">3. Customization</a>
+        <a class="Polaris-Button Polaris-Button--pressable Polaris-Button--variantPrimary Polaris-Button--sizeMedium Polaris-Button--textAlignCenter" data-page="admin/orders?shop={{ shopUrl }}">4. Orders</a>
+        <a class="Polaris-Button Polaris-Button--pressable Polaris-Button--variantPrimary Polaris-Button--sizeMedium Polaris-Button--textAlignCenter" data-page="admin/dashboard?shop={{ shopUrl }}">5. Dashboard</a>
+    </div>
+
+    <input type="hidden" name="appUrl" id="appUrl" value="{{ env.NGROK_URL }}">
+    <input type="hidden" name="shopUrl" id="shopUrl" value="{{ shopUrl }}">
+  
+    {% set shopURL =  shopUrl  %}
+    {% set shopifyApiKey = env.SHOPIFY_API_KEY %}
+    {% set app_url = "https://" ~ shopURL ~ "/admin/apps/" ~ env.APP_URL_ID %}
+
+    <script>
+        var SHOPIFY_API_KEY = "{{ shopifyApiKey|e('js') }}";
+    </script>
+
+    <div class="Polaris-Frame" data-polaris-layer="true">
+        <div class="Polaris-Frame__ContextualSaveBar Polaris-Frame-CSSAnimation--startFade">
+        </div>
+        <main class="Polaris-Frame__Main" id="AppFrameMain" data-has-global-ribbon="false">
+            <div class="Polaris-Frame__Content" style="display:flex">
+                <div class="mainContent">
+                    <div class="Polaris-Page">
+                        <div class="spinner_div"></div>
+                        <ui-save-bar id="my-save-bar" style="display: none;">
+                          <button variant="primary" id="save-button"></button>
+                          <button id="discard-button"></button>
+                        </ui-save-bar>
+                        <div id="shopify_app">Loading...</div>
+                        <script>
+                          document.getElementById('save-button').addEventListener('click', () => {
+                            console.log('Saving');
+                            document.getElementById('my-save-bar').hide();
+                          });
+
+                          document.getElementById('discard-button').addEventListener('click', () => {
+                            console.log('Discarding');
+                            document.getElementById('my-save-bar').hide();
+                          });
+                        </script>
+                     </div>
+                </div>  
+            </div>
+        </main>
+    </div>
+    <footer>
+         
+    </footer>
+    
+</body>
+
+</html>
